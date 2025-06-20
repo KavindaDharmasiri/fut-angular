@@ -1,0 +1,12 @@
+<div class="grid grid-cols-4 gap-4">
+  <div class="col-span-1 bg-gray-100 h-screen p-4 shadow">
+    <h2 class="text-xl font-bold mb-4">Admin Panel</h2>
+    <ul class="space-y-2">
+      <li><a routerLink="/admin/users" class="text-blue-600">👤 Users</a></li>
+      <li><a routerLink="/admin/stocks" class="text-blue-600">💹 Stocks</a></li>
+    </ul>
+  </div>
+  <div class="col-span-3 p-4">
+    <router-outlet></router-outlet>
+  </div>
+</div>

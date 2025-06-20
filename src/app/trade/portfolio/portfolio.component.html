@@ -1,0 +1,33 @@
+<div class="card shadow-sm border-0 rounded-3 p-4 mb-4 bg-white">
+  <div class="card-header bg-white py-3 border-bottom-0">
+    <h3 class="text-center text-lg fw-bold mb-0">My Portfolio</h3>
+  </div>
+
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+        <tr>
+          <th>Symbol</th>
+          <th>Quantity</th>
+          <th>Avg. Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of portfolio" class="animate__animated animate__fadeIn">
+          <td class="fw-bold">{{ item.stockSymbol }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>${{ item.avgPrice | number: '1.2-2' }}</td>
+        </tr>
+
+        <!-- Empty State -->
+        <tr *ngIf="portfolio.length === 0">
+          <td colspan="3" class="text-center text-muted py-4">
+            Your portfolio is empty.
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

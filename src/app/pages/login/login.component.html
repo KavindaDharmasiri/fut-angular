@@ -1,0 +1,80 @@
+<div class="bg-light min-vh-100 d-flex align-items-center py-5">
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg border-0 rounded-4 p-5 bg-white position-relative overflow-hidden">
+
+        <!-- Decorative Background Circle -->
+        <div class="position-absolute top-0 start-0 translate-middle bg-primary rounded-circle opacity-10" style="width: 120px; height: 120px;"></div>
+
+        <!-- Icon -->
+        <div class="text-center mb-4 z-2 position-relative">
+          <i class="pi pi-shield text-primary display-4"></i>
+          <h5 class="mt-2 text-muted">Welcome Back</h5>
+        </div>
+
+        <h2 class="text-center mb-4 fw-bold">Login</h2>
+
+        <!-- Username Input -->
+        <div class="mb-3 input-group input-group-lg">
+          <span class="input-group-text bg-light text-primary">
+            <i class="pi pi-user"></i>
+          </span>
+          <input
+            type="text"
+            class="form-control form-control-lg shadow-sm"
+            placeholder="Username"
+            [(ngModel)]="username"
+            autocomplete="username"
+          />
+        </div>
+
+        <!-- Password Input -->
+        <div class="mb-3 input-group input-group-lg">
+          <span class="input-group-text bg-light text-primary">
+            <i class="pi pi-lock"></i>
+          </span>
+          <input
+            type="password"
+            class="form-control form-control-lg shadow-sm"
+            placeholder="Password"
+            [(ngModel)]="password"
+            autocomplete="current-password"
+          />
+        </div>
+
+        <!-- Remember Me & Forgot Password -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="rememberMe" />
+            <label class="form-check-label" for="rememberMe">Remember me</label>
+          </div>
+          <a href="#" class="text-decoration-none small text-primary">Forgot password?</a>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          class="btn btn-lg btn-primary w-100 d-flex align-items-center justify-content-center gap-2 py-3 fw-bold animate__animated animate__fadeIn"
+          (click)="login()"
+        >
+          <i class="pi pi-sign-in fs-5"></i>
+          <span>Login</span>
+        </button>
+
+        <!-- Error Message -->
+        <p class="text-danger text-center mt-3" *ngIf="error">
+          {{ error }}
+        </p>
+
+        <!-- Sign Up Link -->
+        <p class="mt-4 text-center text-muted small">
+          Don't have an account?
+          <a routerLink="/signup" class="text-primary fw-medium text-decoration-none hover-underline">
+            Sign up
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

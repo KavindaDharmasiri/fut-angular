@@ -1,0 +1,86 @@
+<aside class="bg-white shadow-sm rounded-0 h-100 position-fixed top-0 start-0 z-1000 d-flex flex-column"
+       [style.width]="collapsed ? '4rem' : '16rem'"
+       style="transition: all 0.3s ease-in-out; height: 100vh; padding: 1rem; z-index: 999" [class.dark-header]="themeService.isDarkMode()">
+
+  <!-- Sidebar Header -->
+  <div class="d-flex align-items-center mb-4">
+    <i class="pi pi-chart-line text-primary me-2 fs-5"></i>
+    <h5 class="mb-0 fw-bold" *ngIf="!collapsed">Trade Dashboard</h5>
+    <button *ngIf="collapsed" class="btn-close ms-auto d-md-none"
+            (click)="toggleSidebar.emit()" type="button"></button>
+  </div>
+
+  <!-- Navigation Links -->
+  <ul class="nav flex-column gap-2">
+
+    <!-- Dashboard -->
+    <li class="nav-item">
+      <a class="nav-link d-flex align-items-center gap-2 p-3" href="#" routerLink="/dashboard">
+        <i class="pi pi-home text-primary fs-5"></i>
+        <span *ngIf="!collapsed">Dashboard</span>
+      </a>
+    </li>
+
+    <!-- Wallet -->
+    <li class="nav-item">
+      <a class="nav-link d-flex align-items-center gap-2 p-3" href="#" routerLink="/wallet">
+        <i class="pi pi-wallet text-success fs-5"></i>
+        <span *ngIf="!collapsed">Wallet</span>
+      </a>
+    </li>
+
+    <!-- Profile -->
+    <li class="nav-item">
+      <a class="nav-link d-flex align-items-center gap-2 p-3" href="#" routerLink="/profile">
+        <i class="pi pi-user-plus text-info fs-5"></i>
+        <span *ngIf="!collapsed">Profile</span>
+      </a>
+    </li>
+
+    <!-- History -->
+    <li class="nav-item">
+      <a class="nav-link d-flex align-items-center gap-2 p-3" href="#" routerLink="/history">
+        <i class="pi pi-clock text-warning fs-5"></i>
+        <span *ngIf="!collapsed">Trade History</span>
+      </a>
+    </li>
+
+    <!-- Portfolio -->
+    <li class="nav-item">
+      <a class="nav-link d-flex align-items-center gap-2 p-3" href="#" routerLink="/portfolio">
+        <i class="pi pi-th-large text-success fs-5"></i>
+        <span *ngIf="!collapsed">Portfolio</span>
+      </a>
+    </li>
+
+    <!-- Trade -->
+    <li class="nav-item">
+      <a class="nav-link d-flex align-items-center gap-2 p-3" href="#" routerLink="/trade">
+        <i class="pi pi-play text-primary fs-5"></i>
+        <span *ngIf="!collapsed">Trade</span>
+      </a>
+    </li>
+
+    <!-- Logout -->
+    <li class="nav-item mt-auto pt-3 border-top">
+      <a class="nav-link d-flex align-items-center gap-2 p-3 text-danger" href="#" (click)="logout()">
+        <i class="pi pi-sign-out fs-5"></i>
+        <span *ngIf="!collapsed">Logout</span>
+      </a>
+    </li>
+  </ul>
+
+  <!-- Collapse/Expand Button -->
+  <button class="position-absolute bottom-0 end-0 translate-middle btn btn-sm btn-outline-primary rounded-circle m-3"
+          (click)="toggleSidebar.emit()"
+          title="Toggle Sidebar">
+    <i class="pi" [ngClass]="collapsed ? 'pi-arrow-right' : 'pi-arrow-left'"></i>
+  </button>
+</aside>
+
+<!-- Overlay (for mobile only) -->
+<div *ngIf="!collapsed"
+     class="position-fixed w-100 h-100 bg-dark bg-opacity-50 z-999"
+     style="top: 0; left: 0; display: none;"
+     (click)="toggleSidebar.emit()">
+</div>

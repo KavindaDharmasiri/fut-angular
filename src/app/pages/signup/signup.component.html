@@ -1,0 +1,87 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg border-0 rounded-4 p-5 bg-white position-relative overflow-hidden">
+
+        <!-- Decorative Background Circle -->
+        <div class="position-absolute top-0 start-0 translate-middle bg-success rounded-circle opacity-10" style="width: 120px; height: 120px;"></div>
+
+        <!-- Icon -->
+        <div class="text-center mb-4 z-2 position-relative">
+          <i class="pi pi-user-plus text-success display-4"></i>
+          <h5 class="mt-2 text-muted">Create an Account</h5>
+        </div>
+
+        <h2 class="text-center mb-4 fw-bold">Sign Up</h2>
+
+        <!-- Username Input -->
+        <div class="mb-3 input-group input-group-lg">
+          <span class="input-group-text bg-light text-success">
+            <i class="pi pi-user"></i>
+          </span>
+          <input
+            type="text"
+            class="form-control form-control-lg shadow-sm"
+            placeholder="Username"
+            [(ngModel)]="username"
+            autocomplete="username"
+          />
+        </div>
+
+        <!-- Email Input -->
+        <div class="mb-3 input-group input-group-lg">
+          <span class="input-group-text bg-light text-success">
+            <i class="pi pi-envelope"></i>
+          </span>
+          <input
+            type="email"
+            class="form-control form-control-lg shadow-sm"
+            placeholder="Email"
+            [(ngModel)]="email"
+            autocomplete="email"
+          />
+        </div>
+
+        <!-- Password Input -->
+        <div class="mb-3 input-group input-group-lg">
+          <span class="input-group-text bg-light text-success">
+            <i class="pi pi-lock"></i>
+          </span>
+          <input
+            type="password"
+            class="form-control form-control-lg shadow-sm"
+            placeholder="Password"
+            [(ngModel)]="password"
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          class="btn btn-lg btn-success w-100 d-flex align-items-center justify-content-center gap-2 py-3 fw-bold animate__animated animate__fadeIn"
+          (click)="signup()"
+        >
+          <i class="pi pi-user-plus fs-5"></i>
+          <span>Sign Up</span>
+        </button>
+
+        <!-- Success Message -->
+        <p class="text-success text-center mt-3" *ngIf="message">
+          {{ message }}
+        </p>
+
+        <!-- Error Message -->
+        <p class="text-danger text-center mt-3" *ngIf="error">
+          {{ error }}
+        </p>
+
+        <!-- Login Link -->
+        <p class="mt-4 text-center text-muted small">
+          Already have an account?
+          <a routerLink="/login" class="text-success fw-medium text-decoration-none hover-underline">
+            Log in
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

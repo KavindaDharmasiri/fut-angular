@@ -1,0 +1,51 @@
+<header class="bg-white shadow-sm border-bottom sticky-top" [class.dark-header]="themeService.isDarkMode()">
+  <nav class="navbar navbar-expand-lg py-3 px-4">
+    <div class="container-fluid d-flex align-items-center">
+
+      <!-- Logo / Title -->
+      <a class="navbar-brand d-flex align-items-center gap-2 text-primary fw-bold" href="#">
+        <i class="pi pi-chart-line fs-4"></i>
+        <span>Trade Dashboard</span>
+      </a>
+
+      <!-- Mobile Toggle Button -->
+      <button class="btn btn-outline-primary d-lg-none ms-auto"
+              type="button"
+              (click)="toggleSidebar()">
+        <i class="pi pi-bars"></i>
+      </button>
+
+      <!-- Desktop Navigation -->
+      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+        <!-- Theme Toggle Button -->
+        <button class="btn btn-outline-secondary m-3" (click)="toggleTheme()" aria-label="Toggle Dark Mode">
+          {{ isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode' }}
+        </button>
+
+        <!-- Nav Links -->
+        <ul class="navbar-nav gap-3">
+          <li class="nav-item">
+            <a class="nav-link fw-medium" href="#" routerLink="/dashboard">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-medium" href="#" routerLink="/wallet">Wallet</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-medium" href="#" routerLink="/trade">Trade</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle fw-medium" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="pi pi-user me-1" [class.text-primary]="!isDarkMode" [class.text-light]="isDarkMode"></i> Account
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

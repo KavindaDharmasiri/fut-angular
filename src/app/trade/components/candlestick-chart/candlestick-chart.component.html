@@ -1,0 +1,65 @@
+<!-- Chart Section -->
+<div style="padding: 10px; background-color: #1e1e1e; color: white; display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+  <h3 style="margin: 0;">
+    📉 Current Price:
+    <strong>{{ currentPrice | number: '1.2-2' }} USDT</strong>
+    &nbsp;|&nbsp;
+    📊 Live ROI:
+    <strong [ngStyle]="{ color: liveRoi >= 0 ? 'lightgreen' : 'red' }">
+      {{ liveRoi | number: '1.2-2' }}%
+    </strong>
+  </h3>
+
+  <label for="top-investment" style="font-weight: bold;">💵 Investment:</label>
+  <input
+    type="number"
+    id="top-investment"
+    [(ngModel)]="investment"
+    placeholder="e.g., 1000"
+    style="padding: 5px 10px; width: 120px; background-color: #333; color: white; border: 1px solid #666; border-radius: 4px;"
+  />
+</div>
+
+
+<div id="chart" style="width: 100%; height: 60vh;"></div>
+
+<!-- Simulation Section -->
+<div style="padding: 20px; background-color: #111; color: white;">
+  <h2>💰 Trade Simulator</h2>
+
+  <form (ngSubmit)="simulateTrade()">
+    <label for="investment">Enter Investment Amount (USDT):</label><br />
+    <input
+      type="number"
+      [(ngModel)]="investment"
+      name="investment"
+      id="investment"
+      placeholder="e.g., 1000"
+      style="padding: 8px; width: 200px; margin: 10px 0;"
+      required
+    />
+    <button
+      type="submit"
+      style="padding: 8px 16px; background-color: green; color: white; border: none; cursor: pointer;"
+    >
+      Simulate
+    </button>
+  </form>
+
+  <div *ngIf="simulationResult !== null" style="margin-top: 15px;">
+    <p>📊 Entry Price: {{ entry }}</p>
+    <p>🎯 TP Hit: {{ tpHit }}</p>
+    <p>📈 Final Return: <strong>{{ simulationResult | number:'1.2-2' }} USDT</strong></p>
+    <p>💹 PnL (Profit & Loss):
+      <strong [ngStyle]="{ color: pnl >= 0 ? 'lightgreen' : 'red' }">
+        {{ pnl | number:'1.2-2' }} USDT
+      </strong>
+    </p>
+    <p>📈 ROI (Return on Investment):
+      <strong [ngStyle]="{ color: roi >= 0 ? 'lightgreen' : 'red' }">
+        {{ roi | number:'1.2-2' }}%
+      </strong>
+    </p>
+
+  </div>
+</div>

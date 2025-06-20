@@ -1,0 +1,31 @@
+<div class="card shadow-sm border-0 rounded-3 p-4 bg-light text-center animate__animated animate__fadeIn">
+  <div class="card-body">
+    <h3 class="text-lg fw-bold mb-3">Wallet Balance</h3>
+
+    <!-- Wallet Icon -->
+    <div class="d-flex justify-content-center mb-3">
+      <i class="pi pi-wallet text-primary" style="font-size: 2rem;"></i>
+    </div>
+
+    <!-- Balance Display -->
+    <p class="display-6 mb-0" [ngClass]="{
+        'text-success': balance >= 100,
+        'text-warning': balance < 100 && balance > 0,
+        'text-danger': balance <= 0
+      }"
+    >
+      ${{ balance | number: '1.2-2' }}
+    </p>
+
+    <!-- Low Balance Warning (Optional) -->
+    <div *ngIf="balance < 10 && balance > 0" class="mt-2 small text-warning">
+      <i class="pi pi-exclamation-triangle me-1"></i>
+      Low balance
+    </div>
+
+    <div *ngIf="balance <= 0" class="mt-2 small text-danger">
+      <i class="pi pi-times-circle me-1"></i>
+      No funds available
+    </div>
+  </div>
+</div>

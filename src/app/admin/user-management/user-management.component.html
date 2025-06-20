@@ -1,0 +1,23 @@
+<h3 class="text-xl font-bold mb-4">User Management</h3>
+<table class="w-full table-auto bg-white rounded shadow">
+  <thead class="bg-gray-200">
+  <tr>
+    <th class="p-2">Username</th>
+    <th>Email</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users">
+    <td class="p-2">{{ user.username }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.active ? 'Active' : 'Blocked' }}</td>
+    <td>
+      <button class="btn" (click)="toggleStatus(user)">
+        {{ user.active ? 'Block' : 'Unblock' }}
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>

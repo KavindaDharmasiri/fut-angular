@@ -27,9 +27,16 @@
               }
             ],
             "styles": [
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/animate.css/animate.min.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -62,7 +69,8 @@
               "buildTarget": "stock-trader-ang:build:production"
             },
             "development": {
-              "buildTarget": "stock-trader-ang:build:development"
+              "buildTarget": "stock-trader-ang:build:development",
+              "proxyConfig": "./proxyconfig/dev.proxy.config.json"
             }
           },
           "defaultConfiguration": "development"

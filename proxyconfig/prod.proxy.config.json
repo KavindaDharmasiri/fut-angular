@@ -1,0 +1,15 @@
+{
+  "/efms-auth-service": {
+    "target": "http://192.168.2.61:8085",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+
+  "/efms-core-service": {
+    "target": "http://192.168.2.61:8765",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

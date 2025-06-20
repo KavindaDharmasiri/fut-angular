@@ -1,0 +1,14 @@
+.container-fluid {
+  padding: 0;
+}
+
+main.col {
+  margin-left: 0;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+@media (min-width: 992px) {
+  main.col[style*="ms-md-5"] {
+    margin-left: 16rem;
+  }
+}

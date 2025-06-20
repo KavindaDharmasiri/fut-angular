@@ -1,0 +1,148 @@
+<div class="container mt-4">
+  <div class="row g-4">
+    <nav class="bg-gray-800 text-white p-4 flex gap-4">
+      <a (click)="trade()" routerLinkActive="text-yellow-300" style="color: black">Trade</a>
+      <a (click)="portfolioo()" routerLinkActive="text-yellow-300" style="color: black">Portfolio</a>
+      <a (click)="historyG()" routerLinkActive="text-yellow-300" style="color: black">History</a>
+      <a (click)="wallet()" routerLinkActive="text-yellow-300" style="color: black">Wallet</a>
+    </nav>
+
+    <!-- Execute Trade Card -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3 p-4 bg-light">
+        <h2 class="text-center mb-4 fw-bold">Execute Trade</h2>
+
+        <!-- Stock Symbol Input -->
+        <div class="mb-3 input-group input-group-lg">
+          <span class="input-group-text text-primary bg-white">
+            <i class="pi pi-chart-line"></i>
+          </span>
+          <input
+            type="text"
+            class="form-control form-control-lg shadow-sm"
+            placeholder="Stock Symbol (e.g. AAPL)"
+            [(ngModel)]="symbol"
+          />
+        </div>
+
+        <!-- Quantity Input -->
+        <div class="mb-3 input-group input-group-lg">
+          <span class="input-group-text text-primary bg-white">
+            <i class="pi pi-hashtag"></i>
+          </span>
+          <input
+            type="number"
+            class="form-control form-control-lg shadow-sm"
+            placeholder="Quantity"
+            [(ngModel)]="quantity"
+          />
+        </div>
+
+        <!-- Buy/Sell Toggle Buttons -->
+        <div class="d-flex justify-content-center gap-2 mb-3">
+          <button
+            class="btn btn-outline-primary flex-grow-1 d-flex align-items-center justify-content-center gap-2 py-2"
+            [class.active]="type === 'BUY'"
+            (click)="toggleType('BUY')"
+          >
+            <i class="pi pi-arrow-up" *ngIf="type === 'BUY'"></i>
+            <i class="pi pi-shopping-cart" *ngIf="type !== 'BUY'"></i>
+            <span>Buy</span>
+          </button>
+
+          <button
+            class="btn btn-outline-danger flex-grow-1 d-flex align-items-center justify-content-center gap-2 py-2"
+            [class.active]="type === 'SELL'"
+            (click)="toggleType('SELL')"
+          >
+            <i class="pi pi-arrow-down" *ngIf="type === 'SELL'"></i>
+            <i class="pi pi-shopping-bag" *ngIf="type !== 'SELL'"></i>
+            <span>Sell</span>
+          </button>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          class="btn btn-lg btn-success w-100 d-flex align-items-center justify-content-center gap-2 py-3 fw-bold animate__animated animate__fadeIn"
+          [disabled]="loading"
+          (click)="execute()"
+        >
+          <i class="pi pi-wallet fs-5"></i>
+          <span>{{ loading ? 'Processing...' : type + ' Now' }}</span>
+        </button>
+
+        <!-- Success Message -->
+        <p class="mt-3 text-success text-center" *ngIf="message">{{ message }}</p>
+      </div>
+    </div>
+
+    <!-- Portfolio Card -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3 p-4">
+        <h2 class="text-center mb-4 fw-bold">Your Portfolio</h2>
+
+        <div *ngFor="let p of portfolio" class="border-bottom py-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <strong>{{ p.symbol }}</strong>
+            <span>{{ p.quantity }} shares &#64; ${{ p.currentPrice }}</span>
+          </div>
+          <div class="mt-2">
+            P/L:
+            <span
+              [class.text-success]="p.profitLoss >= 0"
+              [class.text-danger]="p.profitLoss < 0"
+            >
+              ${{ p.profitLoss | number: '1.2-2' }}
+            </span>
+          </div>
+        </div>
+
+        <div *ngIf="portfolio.length === 0" class="text-muted text-center mt-4">
+          No positions yet.
+        </div>
+      </div>
+    </div>
+
+    <!-- Trade History Card -->
+    <div class="col-12">
+      <div class="card shadow-sm border-0 rounded-3 p-4">
+        <h2 class="text-center mb-4 fw-bold">Trade History</h2>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Type</th>
+              <th>Symbol</th>
+              <th>Quantity</th>
+              <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let t of history">
+              <td>{{ t.timestamp }}</td>
+              <td>
+                  <span
+                    [class.text-success]="t.type === 'BUY'"
+                    [class.text-danger]="t.type === 'SELL'"
+                  >
+                    {{ t.type }}
+                  </span>
+              </td>
+              <td>{{ t.symbol }}</td>
+              <td>{{ t.quantity }}</td>
+              <td>${{ t.price | number: '1.2-2' }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="history.length === 0" class="text-muted text-center mt-4">
+          No trades yet.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
